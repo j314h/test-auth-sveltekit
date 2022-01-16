@@ -13,7 +13,11 @@ import { cryptoService } from '$lib/provider/crypto/crypto.service';
  * @param param0 corsp de la request
  * @returns retourne body
  */
-export const post = async ({ body }): Promise<IResponseVite> => {
+export const post = async ({
+  body,
+}: {
+  body: string;
+}): Promise<IResponseVite> => {
   try {
     // parse json les données
     const data = JSON.parse(body) as IPerson;
