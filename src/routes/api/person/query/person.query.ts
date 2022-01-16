@@ -8,14 +8,6 @@ export const personQuery = {
     mutation createPerson($newPerson: PersonCreateInput!) {
       createPerson(data: $newPerson) {
         id
-        stage
-        createdAt
-        updatedAt
-        firstName
-        lastName
-        userName
-        pseudo
-        email
       }
     }
   `,
@@ -27,10 +19,21 @@ export const personQuery = {
     mutation publishedPerson($id: PersonWhereUniqueInput!) {
       publishPerson(where: $id) {
         id
-        email
-        userName
         firstName
         lastName
+        userName
+        pseudo
+        email
+        adresse
+        codePost
+        city
+        phoneNumber
+        stage
+        avatar {
+          id
+          fileName
+          url
+        }
       }
     }
   `,

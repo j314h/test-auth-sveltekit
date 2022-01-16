@@ -4,9 +4,9 @@ import { ERole } from '$lib/types/role.type';
 export const apiService = {
   /**
    * passe l'etat draft à l'état publier
-   * @param id => id ciblé
-   * @param query => requete du model
-   * @returns => retourne le model publier
+   * @param id id ciblé
+   * @param query requete du model
+   * @returns retourne le model publier
    */
   publish: async <T>(id: string, query: string): Promise<T> => {
     return await graphqlService(ERole.ROOT).request<T>(query, {

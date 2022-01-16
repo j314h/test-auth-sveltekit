@@ -1,3 +1,5 @@
+import type { IImage } from './image.type';
+
 /**
  * interface person
  */
@@ -13,6 +15,7 @@ export interface IPerson {
   codePost?: string;
   city?: string;
   phoneNumber?: string;
+  avatar?: IImage;
 }
 
 /**
