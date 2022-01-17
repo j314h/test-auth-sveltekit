@@ -20,7 +20,7 @@ export const personAction = {
 
     if (!publishPerson) {
       throw new Error(
-        'Une erreur est survenu pendant la création, impossible de creer le user'
+        "Une erreur est survenu pendant la création, impossible de creer l'utilisateur"
       );
     }
     console.log(publishPerson);
