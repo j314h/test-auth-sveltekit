@@ -1,12 +1,17 @@
 <script lang="ts">
-  import type { IPerson } from '$lib/types/person.type';
+  import { personAction } from '$lib/models/person/action/person.action';
+  import { ERole } from '$lib/types/role.type';
 
+  // les roles pour creation user
+  let roles: ERole[] = [ERole.ROOT, ERole.DEV, ERole.CLIENT];
+
+  // connexion input value
   let valueEmail = '';
   let valuePassword = '';
 
+  // create user input value
   let valueFirstName = '';
   let valueLastName = '';
-  let valueUserName = '';
   let valuePseudo = '';
   let valueEmailCreate = '';
   let valuePasswordCreate = '';
@@ -30,29 +35,19 @@
     console.log('BODY : ', res);
   };
 
-  // creation user
-  const createUserForm = async (e): Promise<void> => {
-    // creation formData
-    const formData = new FormData(e.target);
-    const data = {} as IPerson;
-    formData.forEach((v, k) => {
-      data[k] = v;
-    });
+  // reset input form create use
+  const resetFormCreateUser = (): void => {
+    valueFirstName = '';
+    valueLastName = '';
+    valuePseudo = '';
+    valueEmailCreate = '';
+    valuePasswordCreate = '';
+  };
 
-    // valueFirstName = '';
-    // valueLastName = '';
-    // valueUserName = '';
-    // valuePseudo = '';
-    // valueEmailCreate = '';
-    // valuePasswordCreate = '';
-
-    const res = await fetch('api/person.json', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    const resObject = await res.json();
-
-    console.log(resObject);
+  //envoie formulaire create
+  const handlerCreateForm = (e) => {
+    personAction.createPerson(e);
+    resetFormCreateUser();
   };
 </script>
 
@@ -66,13 +61,18 @@
 
 <!-- création user -->
 <h1>Creation User</h1>
-<form on:submit|preventDefault={createUserForm}>
+<form on:submit|preventDefault={handlerCreateForm}>
   <input type="text" name="firstName" bind:value={valueFirstName} />
   <input type="text" name="lastName" bind:value={valueLastName} />
-  <input type="text" name="userName" bind:value={valueUserName} />
   <input type="text" name="pseudo" bind:value={valuePseudo} />
   <input type="text" name="email" bind:value={valueEmailCreate} />
   <input type="text" name="password" bind:value={valuePasswordCreate} />
+  <select name="role" id="role-select">
+    <option value="">-- choisissez un role --</option>
+    {#each roles as role}
+      <option value={role}>{role}</option>
+    {/each}
+  </select>
   <button>Envoyer</button>
 </form>
 

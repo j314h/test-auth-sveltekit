@@ -10,8 +10,8 @@ import { cryptoService } from '$lib/provider/crypto/crypto.service';
 
 /**
  * creation user dans graphcms
- * @param param0 corsp de la request
- * @returns retourne body
+ * @param {body} => corp de la request
+ * @returns retourne body vite
  */
 export const post = async ({
   body,
@@ -24,6 +24,9 @@ export const post = async ({
 
     // hash password
     data.password = cryptoService.encrypt(data.password);
+
+    // creation du userName
+    data.userName = `${data.firstName} ${data.lastName}`;
 
     // creation
     const { createPerson } = await apiService.create<
