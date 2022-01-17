@@ -16,6 +16,14 @@ export interface IPerson {
   city?: string;
   phoneNumber?: string;
   avatar?: IImage;
+  role?: string;
+}
+
+/**
+ * interface person
+ */
+export interface IPersonReceved {
+  person?: IPerson;
 }
 
 /**

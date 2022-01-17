@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import { fetchService } from '$lib/provider/fetch/fetch.service';
 import { formService } from '$lib/provider/form/form.service';
 import { EMethodeFetch } from '$lib/types/fetch.type';
@@ -24,5 +25,7 @@ export const personAction = {
       );
     }
     console.log(publishPerson);
+
+    //goto('/dashboard');
   },
 };

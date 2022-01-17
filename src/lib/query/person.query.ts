@@ -34,6 +34,31 @@ export const personQuery = {
           fileName
           url
         }
+        role
+      }
+    }
+  `,
+
+  getOnePerson: gql`
+    query getPerson($id: ID!) {
+      person(where: { id: $id }) {
+        id
+        firstName
+        lastName
+        userName
+        pseudo
+        email
+        adresse
+        codePost
+        city
+        phoneNumber
+        stage
+        avatar {
+          id
+          fileName
+          url
+        }
+        role
       }
     }
   `,

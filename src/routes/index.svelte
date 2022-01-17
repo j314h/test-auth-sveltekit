@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { session } from '$app/stores';
   import { personAction } from '$lib/models/person/action/person.action';
   import { ERole } from '$lib/types/role.type';
 
@@ -59,22 +60,24 @@
   <button>Envoyer</button>
 </form>
 
-<!-- création user -->
-<h1>Creation User</h1>
-<form on:submit|preventDefault={handlerCreateForm}>
-  <input type="text" name="firstName" bind:value={valueFirstName} />
-  <input type="text" name="lastName" bind:value={valueLastName} />
-  <input type="text" name="pseudo" bind:value={valuePseudo} />
-  <input type="text" name="email" bind:value={valueEmailCreate} />
-  <input type="text" name="password" bind:value={valuePasswordCreate} />
-  <select name="role" id="role-select">
-    <option value="">-- choisissez un role --</option>
-    {#each roles as role}
-      <option value={role}>{role}</option>
-    {/each}
-  </select>
-  <button>Envoyer</button>
-</form>
+{#if $session.user.role !== 'client'}
+  <!-- création user -->
+  <h1>Creation Users</h1>
+  <form on:submit|preventDefault={handlerCreateForm}>
+    <input type="text" name="firstName" bind:value={valueFirstName} />
+    <input type="text" name="lastName" bind:value={valueLastName} />
+    <input type="text" name="pseudo" bind:value={valuePseudo} />
+    <input type="text" name="email" bind:value={valueEmailCreate} />
+    <input type="text" name="password" bind:value={valuePasswordCreate} />
+    <select name="role" id="role-select">
+      <option value="">-- choisissez un role --</option>
+      {#each roles as role}
+        <option value={role}>{role}</option>
+      {/each}
+    </select>
+    <button>Envoyer</button>
+  </form>
+{/if}
 
 <style>
   input {

@@ -5,7 +5,7 @@ import type {
 } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
 import { apiService } from '../_api.service';
-import { personQuery } from './query/person.query';
+import { personQuery } from '../../../lib/query/person.query';
 import { cryptoService } from '$lib/provider/crypto/crypto.service';
 
 /**
@@ -40,8 +40,12 @@ export const post = async ({
       personQuery.publishedPerson
     );
 
+    // creation headers
+    const headers = apiService.createCookieHeadersApiVite(publishPerson);
+
     return {
       status: 200,
+      headers,
       body: {
         publishPerson,
       },
@@ -50,7 +54,7 @@ export const post = async ({
     return {
       status: 500,
       body: {
-        error,
+        error: error.error,
       },
     };
   }
