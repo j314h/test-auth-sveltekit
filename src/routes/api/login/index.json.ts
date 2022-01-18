@@ -1,9 +1,9 @@
+import { createCookieHeadersApiVite } from '$lib/provider/cookie/cookie.service';
 import { cryptoService } from '$lib/provider/crypto/crypto.service';
 import { personQuery } from '$lib/query/person.query';
 import type { IPerson, IPersonReceved } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
-import { apiService } from '../_api.service';
-import { cookieService } from '../_cookie.service';
+import { getOne } from '../_api.service';
 
 export const post = async ({
   body,
@@ -16,7 +16,7 @@ export const post = async ({
     const data = JSON.parse(body) as IPerson;
 
     // recuperation person avec email
-    const { person } = await apiService.getOne<IPersonReceved>(
+    const { person } = await getOne<IPersonReceved>(
       data.email,
       personQuery.getOnePersonByEmail
     );
@@ -33,7 +33,7 @@ export const post = async ({
     }
 
     // creation headers
-    const headers = cookieService.createCookieHeadersApiVite(person);
+    const headers = createCookieHeadersApiVite(person);
 
     return {
       status: 200,
