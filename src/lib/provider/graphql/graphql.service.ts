@@ -4,7 +4,7 @@ import { ERole } from '$lib/types/role.type';
 
 // url api graphql dans graphcms
 const graphqlContentUrl = config.get('graphcms.contentUrl') as string;
-
+const graphqlUplaod = config.get('graphcms.asset') as string;
 /**
  * creation du client pour les requests
  * si pas d'argument le header sera paramettrer en mode public
@@ -32,3 +32,6 @@ export const graphqlService = (role: ERole = ERole.CLIENT): GraphQLClient => {
     },
   });
 };
+
+
+

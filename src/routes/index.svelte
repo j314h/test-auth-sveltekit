@@ -16,6 +16,7 @@
   let valuePseudo = '';
   let valueEmailCreate = '';
   let valuePasswordCreate = '';
+  let image = null;
 
   // connexion user
   const connexionForm = async (e) => {
@@ -50,6 +51,14 @@
     personAction.createPerson(e);
     resetFormCreateUser();
   };
+
+  // mise en forme de l'image
+  const changeInputFile = (e) => {
+    console.log('imageTarget =>', e.target);
+
+    image = e.target.files[0];
+    console.log('image =>', image);
+  };
 </script>
 
 <!-- connexion -->
@@ -69,6 +78,8 @@
     <input type="text" name="pseudo" bind:value={valuePseudo} />
     <input type="text" name="email" bind:value={valueEmailCreate} />
     <input type="text" name="password" bind:value={valuePasswordCreate} />
+    <p>image</p>
+    <input type="file" name="avatar" on:change={changeInputFile} />
     <select name="role" id="role-select">
       <option value="">-- choisissez un role --</option>
       {#each roles as role}
