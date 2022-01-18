@@ -29,6 +29,7 @@ export const personQuery = {
         city
         phoneNumber
         stage
+        role
         avatar {
           id
           fileName
@@ -53,6 +54,7 @@ export const personQuery = {
         city
         phoneNumber
         stage
+        role
         avatar {
           id
           fileName
@@ -78,6 +80,7 @@ export const personQuery = {
         city
         phoneNumber
         stage
+        role
         avatar {
           id
           fileName

@@ -23,9 +23,6 @@ export const apiService = {
    * @returns le model creer
    */
   create: async <T, I>(data: I, query: string): Promise<T> => {
-    graphqlService.setHeaders({
-      Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
-    });
     return await graphqlService.request<T>(query, {
       newPerson: data,
     });
