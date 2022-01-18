@@ -35,6 +35,9 @@ export const createAndPublishPerson = async (
 
 /**
  * fonction qui creer la proprieter username
+ * la proprieter userName n'est pas dans le formulaire
+ * et elle est requise pour la creation d'une person
+ * il faut donc quelle soit creer automatiquement
  * @param first => prénom
  * @param last => nom
  * @returns retourne le prénom + le nom
