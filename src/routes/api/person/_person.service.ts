@@ -8,6 +8,10 @@ import { create, publish } from '../_api.service';
 
 /**
  * fonction qui creer et qui publie une person
+ * @description
+ * => creation person et récuperation de l'id de la person
+ * => utilisation de l'id de la person
+ * pour mettre l'etat "publish" dans la bdd
  * @param data => les données de person à creer
  * @returns retourne la person publié
  */

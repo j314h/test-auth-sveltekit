@@ -11,7 +11,6 @@ export const post = async ({
   body: string;
 }): Promise<IResponseVite> => {
   try {
-    console.log('connexion user');
     // parse json les données
     const data = JSON.parse(body) as IPerson;
 

@@ -8,11 +8,19 @@ import {
 
 /**
  * creation user dans graphcms
- * @param {body} => corp de la request (il à été stringify donc il faut le parse)
+ * @description
  * => parse les données du body
  * => hash password
  * => creation de la proprieter userName
  * => creation + publication person dans la bdd
+ * si vous avez besoin de connecter l'utilisateur
+ * au moment de la creation il suffis de rajouter
+ * la fonction de creationheader venant de cookie.service depuis provider
+ * implementer là avant le return contenu dans le try
+ * et ajouter la variable reçus à l'objet de retour
+ * cela permet d'ajouter directement à la creation le jwt en cookie
+ * (l'utilisateur est connecté des la creation de son compte)
+ * @param {body} => corp de la request (il à été stringify donc il faut le parse)
  * @returns retourne body vite
  */
 export const post = async ({
