@@ -4,13 +4,11 @@ import { jwtService } from '$lib/provider/jwt/jwt.service';
 
 export const cookieService = {
   /**
-   * fonction qui crere un set-cookie pour le headers
+   * fonction qui creer un set-cookie pour le headers
    * @param data => les donnée à introduire dans le jwt
    * @returns retourne un header set-cookie
    */
   createCookieHeadersApiVite: (person: IPerson): any => {
-    console.log(person);
-
     return {
       'Set-Cookie': cookie.serialize(
         'jwt4368',
@@ -21,7 +19,7 @@ export const cookieService = {
         }),
         {
           httpOnly: true,
-          maxAge: 60 * 60,
+          maxAge: 60 * 60, // temps de validité du cookie (1j)
           sameSite: 'strict',
           path: '/',
         }

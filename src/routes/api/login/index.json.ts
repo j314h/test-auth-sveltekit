@@ -16,7 +16,7 @@ export const post = async ({
     const data = JSON.parse(body) as IPerson;
 
     // recuperation person avec email
-    const { person } = await apiService.getEmail<IPersonReceved>(
+    const { person } = await apiService.getOne<IPersonReceved>(
       data.email,
       personQuery.getOnePersonByEmail
     );

@@ -5,8 +5,8 @@ export const personQuery = {
    * request creation person
    */
   createPerson: gql`
-    mutation createPerson($newPerson: PersonCreateInput!) {
-      createPerson(data: $newPerson) {
+    mutation createPerson($new: PersonCreateInput!) {
+      createPerson(data: $new) {
         id
       }
     }
@@ -41,8 +41,8 @@ export const personQuery = {
   `,
 
   getOnePersonById: gql`
-    query getOnePerson($id: ID!) {
-      person(where: { id: $id }) {
+    query getOnePerson($where: ID!) {
+      person(where: { id: $where }) {
         id
         firstName
         lastName
@@ -66,8 +66,8 @@ export const personQuery = {
   `,
 
   getOnePersonByEmail: gql`
-    query getOnePerson($email: String!) {
-      person(where: { email: $email }) {
+    query getOnePerson($where: String!) {
+      person(where: { email: $where }) {
         id
         firstName
         lastName

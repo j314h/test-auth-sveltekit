@@ -1,8 +1,6 @@
-import { fetchService } from '$lib/provider/fetch/fetch.service';
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
 import { jwtService } from '$lib/provider/jwt/jwt.service';
 import { personQuery } from '$lib/query/person.query';
-import { EMethodeFetch } from '$lib/types/fetch.type';
 import type { IPersonReceved } from '$lib/types/person.type';
 import { ERole } from '$lib/types/role.type';
 import config from 'config';
@@ -29,7 +27,7 @@ export const handle = async ({ request, resolve }) => {
     console.log('PAYLOAD : ', payload.id);
 
     // vérification si le user exist + changement header graphql en fonction du role
-    const person = await apiService.getId<IPersonReceved>(
+    const person = await apiService.getOne<IPersonReceved>(
       payload.id,
       personQuery.getOnePersonById
     );
@@ -39,13 +37,10 @@ export const handle = async ({ request, resolve }) => {
       console.log('error person not exist');
     }
 
-    console.log('ROLE : ', payload.role);
-
     // attribut des authorization headers en fonction du role du user connecté
     switch (payload.role) {
       case ERole.ROOT:
         console.log('je suis dans le switch root');
-
         graphqlService.setHeaders({
           Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
         });
