@@ -1,28 +1,54 @@
+import { fetchService } from '$lib/provider/fetch/fetch.service';
+import { graphqlService } from '$lib/provider/graphql/graphql.service';
 import { jwtService } from '$lib/provider/jwt/jwt.service';
+import { personQuery } from '$lib/query/person.query';
+import { EMethodeFetch } from '$lib/types/fetch.type';
+import type { IPersonReceved } from '$lib/types/person.type';
+import { ERole } from '$lib/types/role.type';
+import config from 'config';
 import cookie from 'cookie';
+import { apiService } from './routes/api/_api.service';
 
 export const handle = async ({ request, resolve }) => {
-  console.log('début');
-
-  console.log('REQUEST : ', request);
-
   // recuperer les cookie sous forme d'objet
   const cookieApi = cookie.parse(request.headers.cookie);
-  console.log('COOKIE :', cookieApi);
 
   // test le cookie si il exist
   if (cookieApi.jwt4368) {
     // vérification expiration + recuperation des données du jwt
     const payload = jwtService.verifJwt(cookieApi.jwt4368);
-    console.log('PAYLOAD : ', payload);
 
+    // si payload est expiré
     if (payload.expiredAt) {
       console.log('error cookie');
-
       // déconnexion user + suppression token des cookies + suppression header graphql
+      delete cookieApi.jwt4368;
+      console.log('COOKIE : ', cookieApi);
     }
 
+    console.log('PAYLOAD : ', payload.id);
+
     // vérification si le user exist + changement header graphql en fonction du role
+    const person = await apiService.getId<IPersonReceved>(
+      payload.id,
+      personQuery.getOnePersonById
+    );
+
+    // si le user n'exist pas
+    if (!person) {
+      console.log('error person not exist');
+    }
+
+    // attribut des authorization headers en fonction du role du user connecté
+    switch (payload.role) {
+      case ERole.ROOT:
+        graphqlService.setHeaders({
+          Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
+        });
+        break;
+      default:
+        break;
+    }
   }
 
   console.log('fin');

@@ -39,8 +39,8 @@ export const personQuery = {
     }
   `,
 
-  getOnePerson: gql`
-    query getPerson($id: ID!) {
+  getOnePersonById: gql`
+    query getOnePerson($id: ID!) {
       person(where: { id: $id }) {
         id
         firstName
@@ -59,6 +59,30 @@ export const personQuery = {
           url
         }
         role
+      }
+    }
+  `,
+
+  getOnePersonByEmail: gql`
+    query getOnePerson($email: String!) {
+      person(where: { email: $email }) {
+        id
+        firstName
+        lastName
+        userName
+        pseudo
+        email
+        password
+        adresse
+        codePost
+        city
+        phoneNumber
+        stage
+        avatar {
+          id
+          fileName
+          url
+        }
       }
     }
   `,
