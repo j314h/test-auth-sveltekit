@@ -35,22 +35,23 @@ export const post = async ({
     if (!person) {
       throw new Error("L'utilisateur est inconnu !");
     }
+    const res = compareHash(data.password, person.password);
     // si mot de passe pas ok
-    if (compareHash(data.password, person.password)) {
+    if (!res) {
       throw new Error('Mot de passe incorrecte !');
     }
 
     // on supprime password du person
-    const { password, ...personLessPwd } = person;
+    delete person.password;
 
     // creation headers
-    const headers = createCookieHeadersApiVite(personLessPwd);
+    const headers = createCookieHeadersApiVite(person);
 
     return {
       status: 200,
       headers,
       body: {
-        ...personLessPwd,
+        ...person,
       },
     };
   } catch (error) {

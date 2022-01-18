@@ -1,5 +1,5 @@
 import type { IPerson } from '$lib/types/person.type';
-import { jwtService } from '../jwt/jwt.service';
+import { createJwt } from '../jwt/jwt.service';
 import cookie from 'cookie';
 
 /**
@@ -11,7 +11,7 @@ export const createCookieHeadersApiVite = (person: IPerson): any => {
   return {
     'Set-Cookie': cookie.serialize(
       'jwt4368',
-      jwtService.createJwt({
+      createJwt({
         id: person.id,
         email: person.email,
         role: person.role,

@@ -32,7 +32,7 @@
     valuePassword = '';
 
     // create
-    const { person } = await callApi<IPersonReceved>(
+    const person = await callApi<IPersonReceved>(
       'api/login.json',
       EMethodeFetch.POST,
       formData

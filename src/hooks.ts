@@ -18,13 +18,9 @@ export const handle = async ({ request, resolve }) => {
 
     // si payload est expiré
     if (payload.expiredAt) {
-      console.log('error cookie');
       // déconnexion user + suppression token des cookies + suppression header graphql
       delete cookieApi.jwt4368;
-      console.log('COOKIE : ', cookieApi);
     }
-
-    console.log('PAYLOAD : ', payload.id);
 
     // vérification si le user exist + changement header graphql en fonction du role
     const person = await getOne<IPersonReceved>(
@@ -47,16 +43,18 @@ export const handle = async ({ request, resolve }) => {
         break;
       default:
         console.log('je suis dans le switch default');
-
         break;
     }
+  } else {
+    graphqlService.setHeaders({
+      Authorization: ``,
+    });
   }
 
   console.log('fin');
 
   // on reconstruit la sortie
   const reponse = await resolve(request);
-  console.log('RESPONSE : ', reponse);
 
   // on retourne la request en cours apres modification
   return reponse;

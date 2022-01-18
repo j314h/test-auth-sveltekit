@@ -64,7 +64,7 @@ export const callApi = async function <T>(
   header: HeadersInit = {}
 ): Promise<T> {
   const response: T = await (
-    await fetch(url, this.configRequest(method, header, data))
+    await fetch(url, configRequest(method, header, data))
   ).json();
 
   return response;
