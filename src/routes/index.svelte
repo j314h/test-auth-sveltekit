@@ -1,6 +1,10 @@
 <script lang="ts">
   import { session } from '$app/stores';
   import { personAction } from '$lib/models/person/action/person.action';
+  import { fetchService } from '$lib/provider/fetch/fetch.service';
+  import { formService } from '$lib/provider/form/form.service';
+  import { EMethodeFetch } from '$lib/types/fetch.type';
+  import type { IPersonReceved } from '$lib/types/person.type';
   import { ERole } from '$lib/types/role.type';
 
   // les roles pour creation user
@@ -21,20 +25,20 @@
   // connexion user
   const connexionForm = async (e) => {
     // creation formData
-    const formData = new FormData(e.target);
-    const data = {};
-    formData.forEach((v, k) => {
-      data[k] = v;
-    });
+    const formData = formService.createObjectAsFormData(e.target);
 
     // reset input connexion
     valueEmail = '';
     valuePassword = '';
 
-    const test = await fetch('/api/auth.json');
-    const res = await test.json();
-    console.log('RESPONSE : ', test);
-    console.log('BODY : ', res);
+    // create
+    const { person } = await fetchService.callApi<IPersonReceved>(
+      'api/login.json',
+      EMethodeFetch.POST,
+      formData
+    );
+
+    console.log('RESPONSE : ', person);
   };
 
   // reset input form create use

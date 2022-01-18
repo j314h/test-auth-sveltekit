@@ -45,11 +45,11 @@ export const post = async ({
     );
 
     // creation headers
-    const headers = cookieService.createCookieHeadersApiVite(publishPerson);
+    //const headers = cookieService.createCookieHeadersApiVite(publishPerson);
 
     return {
       status: 200,
-      headers,
+      //headers,
       body: {
         publishPerson,
       },

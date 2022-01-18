@@ -39,14 +39,20 @@ export const handle = async ({ request, resolve }) => {
       console.log('error person not exist');
     }
 
+    console.log('ROLE : ', payload.role);
+
     // attribut des authorization headers en fonction du role du user connecté
     switch (payload.role) {
       case ERole.ROOT:
+        console.log('je suis dans le switch root');
+
         graphqlService.setHeaders({
           Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
         });
         break;
       default:
+        console.log('je suis dans le switch default');
+
         break;
     }
   }

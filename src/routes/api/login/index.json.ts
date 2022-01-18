@@ -22,7 +22,15 @@ export const post = async ({
     );
 
     // compare mot de passe
-    cryptoService.compareHash(data.password, person.password);
+    const resCompare = cryptoService.compareHash(
+      data.password,
+      person.password
+    );
+
+    // si mot de passe pas ok
+    if (!resCompare) {
+      throw new Error('Mot de passe incorrecte !');
+    }
 
     // creation headers
     const headers = cookieService.createCookieHeadersApiVite(person);

@@ -9,6 +9,8 @@ export const cookieService = {
    * @returns retourne un header set-cookie
    */
   createCookieHeadersApiVite: (person: IPerson): any => {
+    console.log(person);
+
     return {
       'Set-Cookie': cookie.serialize(
         'jwt4368',
