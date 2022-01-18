@@ -78,8 +78,6 @@
     <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
     <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
     <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
-    <p>image</p>
-    <input type="file" name="avatar" on:change={changeInputFile} />
     <select name="role" id="role-select">
       <option value="">-- choisissez un role --</option>
       {#each roles as role}
