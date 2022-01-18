@@ -1,5 +1,5 @@
 import { createCookieHeadersApiVite } from '$lib/provider/cookie/cookie.service';
-import { cryptoService } from '$lib/provider/crypto/crypto.service';
+import { compareHash } from '$lib/provider/crypto/crypto.service';
 import { personQuery } from '$lib/query/person.query';
 import type { IPerson, IPersonReceved } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
@@ -36,7 +36,7 @@ export const post = async ({
       throw new Error("L'utilisateur est inconnu !");
     }
     // si mot de passe pas ok
-    if (cryptoService.compareHash(data.password, person.password)) {
+    if (compareHash(data.password, person.password)) {
       throw new Error('Mot de passe incorrecte !');
     }
 

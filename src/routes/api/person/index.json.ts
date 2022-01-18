@@ -1,6 +1,6 @@
 import type { IPerson } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
-import { cryptoService } from '$lib/provider/crypto/crypto.service';
+import { encrypt } from '$lib/provider/crypto/crypto.service';
 import {
   createAndPublishPerson,
   createUserNamePropertie,
@@ -32,7 +32,7 @@ export const post = async ({
     // parse json les données reçus dans body
     const data = JSON.parse(body) as IPerson;
     // hash password
-    data.password = cryptoService.encrypt(data.password);
+    data.password = encrypt(data.password);
     // creation du userName
     data.userName = createUserNamePropertie(data.firstName, data.lastName);
     // creation et publication person dans bdd

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { session } from '$app/stores';
-  import { personAction } from '$lib/models/person/action/person.action';
-  import { fetchService } from '$lib/provider/fetch/fetch.service';
-  import { formService } from '$lib/provider/form/form.service';
+  import { createPerson } from '$lib/models/person/action/person.action';
+  import { callApi } from '$lib/provider/fetch/fetch.service';
+  import { createObjectAsFormData } from '$lib/provider/form/form.service';
   import { EMethodeFetch } from '$lib/types/fetch.type';
   import type { IPersonReceved } from '$lib/types/person.type';
   import { ERole } from '$lib/types/role.type';
@@ -25,14 +25,14 @@
   // connexion user
   const connexionForm = async (e) => {
     // creation formData
-    const formData = formService.createObjectAsFormData(e.target);
+    const formData = createObjectAsFormData(e.target);
 
     // reset input connexion
     valueEmail = '';
     valuePassword = '';
 
     // create
-    const { person } = await fetchService.callApi<IPersonReceved>(
+    const { person } = await callApi<IPersonReceved>(
       'api/login.json',
       EMethodeFetch.POST,
       formData
@@ -52,7 +52,7 @@
 
   //envoie formulaire create
   const handlerCreateForm = (e) => {
-    personAction.createPerson(e);
+    createPerson(e);
     resetFormCreateUser();
   };
 
@@ -77,11 +77,36 @@
   <!-- création user -->
   <h1>Creation Users</h1>
   <form on:submit|preventDefault={handlerCreateForm}>
-    <input type="text" name="firstName" placeholder="firstName" bind:value={valueFirstName} />
-    <input type="text" name="lastName" placeholder="lastName" bind:value={valueLastName} />
-    <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
-    <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
-    <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
+    <input
+      type="text"
+      name="firstName"
+      placeholder="firstName"
+      bind:value={valueFirstName}
+    />
+    <input
+      type="text"
+      name="lastName"
+      placeholder="lastName"
+      bind:value={valueLastName}
+    />
+    <input
+      type="text"
+      name="pseudo"
+      placeholder="pseudo"
+      bind:value={valuePseudo}
+    />
+    <input
+      type="text"
+      name="email"
+      placeholder="email"
+      bind:value={valueEmailCreate}
+    />
+    <input
+      type="text"
+      name="password"
+      placeholder="password"
+      bind:value={valuePasswordCreate}
+    />
     <select name="role" id="role-select">
       <option value="">-- choisissez un role --</option>
       {#each roles as role}

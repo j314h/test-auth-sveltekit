@@ -1,11 +1,11 @@
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
-import { jwtService } from '$lib/provider/jwt/jwt.service';
+import { verifJwt } from '$lib/provider/jwt/jwt.service';
 import { personQuery } from '$lib/query/person.query';
 import type { IPersonReceved } from '$lib/types/person.type';
 import { ERole } from '$lib/types/role.type';
 import config from 'config';
 import cookie from 'cookie';
-import { apiService } from './routes/api/_api.service';
+import { getOne } from './routes/api/_api.service';
 
 export const handle = async ({ request, resolve }) => {
   // recuperer les cookie sous forme d'objet
@@ -14,7 +14,7 @@ export const handle = async ({ request, resolve }) => {
   // test le cookie si il exist
   if (cookieApi.jwt4368) {
     // vérification expiration + recuperation des données du jwt
-    const payload = jwtService.verifJwt(cookieApi.jwt4368);
+    const payload = verifJwt(cookieApi.jwt4368);
 
     // si payload est expiré
     if (payload.expiredAt) {
@@ -27,7 +27,7 @@ export const handle = async ({ request, resolve }) => {
     console.log('PAYLOAD : ', payload.id);
 
     // vérification si le user exist + changement header graphql en fonction du role
-    const person = await apiService.getOne<IPersonReceved>(
+    const person = await getOne<IPersonReceved>(
       payload.id,
       personQuery.getOnePersonById
     );
