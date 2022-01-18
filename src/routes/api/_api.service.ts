@@ -1,8 +1,5 @@
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
 import { ERole } from '$lib/types/role.type';
-import { jwtService } from '$lib/provider/jwt/jwt.service';
-import cookie from 'cookie';
-import type { IPerson } from '$lib/types/person.type';
 
 export const apiService = {
   /**
@@ -39,29 +36,5 @@ export const apiService = {
    */
   getId: async <T>(id: string, query: string): Promise<T> => {
     return await graphqlService().request<T>(query, { id });
-  },
-
-  /**
-   * fonction qui crere un set-cookie pour le headers
-   * @param data => les donnée à introduire dans le jwt
-   * @returns retourne un header set-cookie
-   */
-  createCookieHeadersApiVite: (person: IPerson): any => {
-    return {
-      'Set-Cookie': cookie.serialize(
-        'jwt4368',
-        jwtService.createJwt({
-          id: person.id,
-          email: person.email,
-          role: person.role,
-        }),
-        {
-          httpOnly: true,
-          maxAge: 60 * 60,
-          sameSite: 'strict',
-          path: '/',
-        }
-      ),
-    };
   },
 };

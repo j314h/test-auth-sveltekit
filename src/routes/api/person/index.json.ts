@@ -7,6 +7,7 @@ import type { IResponseVite } from 'src/global';
 import { apiService } from '../_api.service';
 import { personQuery } from '../../../lib/query/person.query';
 import { cryptoService } from '$lib/provider/crypto/crypto.service';
+import { cookieService } from '../_cookie.service';
 
 /**
  * creation user dans graphcms
@@ -41,7 +42,7 @@ export const post = async ({
     );
 
     // creation headers
-    const headers = apiService.createCookieHeadersApiVite(publishPerson);
+    const headers = cookieService.createCookieHeadersApiVite(publishPerson);
 
     return {
       status: 200,
