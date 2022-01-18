@@ -1,6 +1,6 @@
 import { createCookieHeadersApiVite } from '$lib/provider/cookie/cookie.service';
 import { compareHash } from '$lib/provider/crypto/crypto.service';
-import { personQuery } from '$lib/query/person.query';
+import { ReqGetOnePersonByEmail } from '$lib/query/person.query';
 import type { IPerson, IPersonReceved } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
 import { getOne } from '../_api.service';
@@ -29,7 +29,7 @@ export const post = async ({
     // recuperation person avec email
     const { person } = await getOne<IPersonReceved>(
       data.email,
-      personQuery.getOnePersonByEmail
+      ReqGetOnePersonByEmail
     );
     // si l'utilisateur n'existe pas
     if (!person) {

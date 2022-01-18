@@ -1,6 +1,6 @@
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
 import { verifJwt } from '$lib/provider/jwt/jwt.service';
-import { personQuery } from '$lib/query/person.query';
+import { ReqGetOnePersonById } from '$lib/query/person.query';
 import type { IPersonReceved } from '$lib/types/person.type';
 import { ERole } from '$lib/types/role.type';
 import config from 'config';
@@ -25,7 +25,7 @@ export const handle = async ({ request, resolve }) => {
     // vérification si le user exist + changement header graphql en fonction du role
     const person = await getOne<IPersonReceved>(
       payload.id,
-      personQuery.getOnePersonById
+      ReqGetOnePersonById
     );
 
     // si le user n'exist pas

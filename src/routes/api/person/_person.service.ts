@@ -1,4 +1,4 @@
-import { personQuery } from '$lib/query/person.query';
+import { ReqCreatePerson, ReqPublishedPerson } from '$lib/query/person.query';
 import type {
   IPerson,
   IPersonCreateReceved,
@@ -21,13 +21,13 @@ export const createAndPublishPerson = async (
   // creation
   const { createPerson } = await create<IPersonCreateReceved, IPerson>(
     data,
-    personQuery.createPerson
+    ReqCreatePerson
   );
 
   // publication
   const { publishPerson } = await publish<IPersonPublishReceved>(
     createPerson.id,
-    personQuery.publishedPerson
+    ReqPublishedPerson
   );
 
   return publishPerson;
