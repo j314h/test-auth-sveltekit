@@ -2,6 +2,7 @@ import type {
   IPerson,
   IPersonCreateReceved,
   IPersonPublishReceved,
+  IPersonReceved,
 } from '$lib/types/person.type';
 import type { IResponseVite } from 'src/global';
 import { apiService } from '../_api.service';
@@ -19,6 +20,8 @@ export const post = async ({
 }: {
   body: string;
 }): Promise<IResponseVite> => {
+  console.log('coucou post create');
+
   try {
     // parse json les données
     const data = JSON.parse(body) as IPerson;

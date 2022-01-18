@@ -1,5 +1,5 @@
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
-import { ERole } from '$lib/types/role.type';
+import config from 'config';
 
 export const apiService = {
   /**
@@ -10,7 +10,7 @@ export const apiService = {
    * @returns retourne le model publier
    */
   publish: async <T>(id: string, query: string): Promise<T> => {
-    return await graphqlService(ERole.ROOT).request<T>(query, {
+    return await graphqlService.request<T>(query, {
       id: { id: id },
     });
   },
@@ -23,7 +23,10 @@ export const apiService = {
    * @returns le model creer
    */
   create: async <T, I>(data: I, query: string): Promise<T> => {
-    return await graphqlService(ERole.ROOT).request<T>(query, {
+    graphqlService.setHeaders({
+      Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
+    });
+    return await graphqlService.request<T>(query, {
       newPerson: data,
     });
   },
@@ -35,6 +38,10 @@ export const apiService = {
    * @returns le model ciblé
    */
   getId: async <T>(id: string, query: string): Promise<T> => {
-    return await graphqlService().request<T>(query, { id });
+    return await graphqlService.request<T>(query, { id });
+  },
+
+  getEmail: async <T>(email: string, query: string): Promise<T> => {
+    return await graphqlService.request<T>(query, { email });
   },
 };

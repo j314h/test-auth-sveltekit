@@ -19,7 +19,7 @@ export const cookieService = {
         }),
         {
           httpOnly: true,
-          maxAge: 60,
+          maxAge: 60 * 60,
           sameSite: 'strict',
           path: '/',
         }
