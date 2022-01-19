@@ -51,7 +51,10 @@ export const post = async ({
 
     return {
       status: 302,
-      headers,
+      headers: {
+        ...headers,
+        location: '/dashboard',
+      },
       body: {
         person,
       },
