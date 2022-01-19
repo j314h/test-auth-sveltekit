@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { login } from '$lib/models/person/action/person.action';
 
   // connexion input value

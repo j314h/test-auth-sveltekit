@@ -47,8 +47,8 @@ export const handle = async ({ request, resolve }) => {
         console.log('je suis dans le switch default');
         break;
     }
-    console.log('creation de la session');
 
+    console.log('creation de la session');
     request.locals.person = person;
   } else {
     graphqlService.setHeaders({
@@ -58,18 +58,10 @@ export const handle = async ({ request, resolve }) => {
   }
 
   console.log('fin du handle');
-
-  // on reconstruit la sortie
   const response = await resolve(request);
-  console.log('RESPONSE HANDLE :', response);
 
-  // on retourne la request en cours apres modification
-  return {
-    ...response,
-    headers: {
-      ...response.headers,
-    },
-  };
+  console.log('RESOLVE : ', response);
+  return response;
 };
 
 export const getSession = (request) => {

@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  export const load = async ({ session, fetch }) => {
+  export const load = async ({ session }) => {
     console.log('SESSION HOME : ', session);
     if (session.person) {
       return {

@@ -1,5 +1,4 @@
-import { goto } from '$app/navigation';
-import { callApi, headersSample } from '$lib/provider/fetch/fetch.service';
+import { callApi } from '$lib/provider/fetch/fetch.service';
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
 import { EMethodeFetch } from '$lib/types/fetch.type';
 import type {
@@ -40,15 +39,16 @@ export const login = async (e): Promise<void> => {
   console.log('test');
 
   // create
-  const person = await callApi<IPersonReceved>(
-    'api/login.json',
-    EMethodeFetch.POST,
-    formData
-  );
+  // const { person } = await callApi<IPersonReceved>(
+  //   'api/login.json',
+  //   EMethodeFetch.POST,
+  //   formData
+  // );
 
-  // si ok on va sur dashbord
-  if (person) {
-    console.log('RESPONSE : ', person);
-    goto('/dashboard');
-  }
+  const connect = await fetch('api/login.json', {
+    method: 'POST',
+    body: JSON.stringify(formData),
+  });
+
+  console.log(connect);
 };
