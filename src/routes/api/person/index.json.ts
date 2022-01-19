@@ -20,6 +20,7 @@ import {
  * et ajouter la variable reçus à l'objet de retour
  * cela permet d'ajouter directement à la creation le jwt en cookie
  * (l'utilisateur est connecté des la creation de son compte)
+ * NOTE : changer le statut de retour 200 => 302
  * @param {body} => corp de la request (il à été stringify donc il faut le parse)
  * @returns retourne body vite
  */

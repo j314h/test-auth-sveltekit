@@ -1,11 +1,14 @@
 <script lang="ts" context="module">
-  export const load = ({ session }) => {
-    console.log('USER LAYOUT SESSION : ', session);
-
+  export const load = async ({ session, fetch }) => {
+    console.log('SESSION HOME : ', session);
+    if (session.person) {
+      return {
+        status: 302,
+        redirect: '/dashboard',
+      };
+    }
     return {
-      props: {
-        user: session.user,
-      },
+      props: {},
     };
   };
 </script>

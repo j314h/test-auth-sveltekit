@@ -23,6 +23,8 @@ export const post = async ({
   body: string;
 }): Promise<IResponseVite> => {
   try {
+    console.log('connexion');
+
     // parse json les données
     const data = JSON.parse(body) as IPerson;
 
@@ -48,10 +50,10 @@ export const post = async ({
     const headers = createCookieHeadersApiVite(person);
 
     return {
-      status: 200,
+      status: 302,
       headers,
       body: {
-        ...person,
+        person,
       },
     };
   } catch (error) {

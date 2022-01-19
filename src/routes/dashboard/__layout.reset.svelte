@@ -1,10 +1,14 @@
 <script lang="ts" context="module">
-  export const load = ({ session }) => {
+  export const load = async ({ session }) => {
     console.log('SESSION DASHBOARD :', session);
-
-    return {
-      props: {},
-    };
+    console.log('coucou dashbord');
+    if (!session.person) {
+      return {
+        status: 302,
+        redirect: '/',
+      };
+    }
+    return {};
   };
 </script>
 

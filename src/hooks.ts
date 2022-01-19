@@ -8,6 +8,8 @@ import cookie from 'cookie';
 import { getOne } from './routes/api/_api.service';
 
 export const handle = async ({ request, resolve }) => {
+  console.log('debut du handle');
+
   // recuperer les cookie sous forme d'objet
   const cookieApi = cookie.parse(request.headers.cookie);
 
@@ -45,23 +47,37 @@ export const handle = async ({ request, resolve }) => {
         console.log('je suis dans le switch default');
         break;
     }
+    console.log('creation de la session');
+
+    request.locals.person = person;
   } else {
     graphqlService.setHeaders({
       Authorization: ``,
     });
+    request.locals.person = null;
   }
 
-  console.log('fin');
+  console.log('fin du handle');
 
   // on reconstruit la sortie
-  const reponse = await resolve(request);
+  const response = await resolve(request);
+  console.log('RESPONSE HANDLE :', response);
 
   // on retourne la request en cours apres modification
-  return reponse;
+  return {
+    ...response,
+    headers: {
+      ...response.headers,
+    },
+  };
 };
 
 export const getSession = (request) => {
-  return {
-    user: {},
-  };
+  console.log('je suis dans getSession');
+
+  return request.locals.person
+    ? {
+        ...request.locals.person,
+      }
+    : {};
 };

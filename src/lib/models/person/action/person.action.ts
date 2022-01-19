@@ -1,5 +1,5 @@
 import { goto } from '$app/navigation';
-import { callApi } from '$lib/provider/fetch/fetch.service';
+import { callApi, headersSample } from '$lib/provider/fetch/fetch.service';
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
 import { EMethodeFetch } from '$lib/types/fetch.type';
 import type {
@@ -37,6 +37,7 @@ export const createPerson = async (e): Promise<void> => {
 export const login = async (e): Promise<void> => {
   // creation formData
   const formData = createObjectAsFormData(e.target);
+  console.log('test');
 
   // create
   const person = await callApi<IPersonReceved>(
