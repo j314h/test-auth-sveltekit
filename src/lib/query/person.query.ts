@@ -1,92 +1,96 @@
 import { gql } from 'graphql-request';
 
-export const personQuery = {
-  /**
-   * request creation person
-   */
-  createPerson: gql`
-    mutation createPerson($newPerson: PersonCreateInput!) {
-      createPerson(data: $newPerson) {
-        id
-      }
+/**
+ * request creation person
+ */
+export const ReqCreatePerson = gql`
+  mutation createPerson($new: PersonCreateInput!) {
+    createPerson(data: $new) {
+      id
     }
-  `,
+  }
+`;
 
-  /**
-   * publication de la person
-   */
-  publishedPerson: gql`
-    mutation publishedPerson($id: PersonWhereUniqueInput!) {
-      publishPerson(where: $id) {
+/**
+ * publication de la person
+ */
+export const ReqPublishedPerson = gql`
+  mutation publishedPerson($id: PersonWhereUniqueInput!) {
+    publishPerson(where: $id) {
+      id
+      firstName
+      lastName
+      userName
+      pseudo
+      email
+      adresse
+      codePost
+      city
+      phoneNumber
+      stage
+      role
+      avatar {
         id
-        firstName
-        lastName
-        userName
-        pseudo
-        email
-        adresse
-        codePost
-        city
-        phoneNumber
-        stage
-        role
-        avatar {
-          id
-          fileName
-          url
-        }
-        role
+        fileName
+        url
       }
+      role
     }
-  `,
+  }
+`;
 
-  getOnePersonById: gql`
-    query getOnePerson($id: ID!) {
-      person(where: { id: $id }) {
+/**
+ * request recupere person via l'id
+ */
+export const ReqGetOnePersonById = gql`
+  query getOnePerson($where: ID!) {
+    person(where: { id: $where }) {
+      id
+      firstName
+      lastName
+      userName
+      pseudo
+      email
+      adresse
+      codePost
+      city
+      phoneNumber
+      stage
+      role
+      avatar {
         id
-        firstName
-        lastName
-        userName
-        pseudo
-        email
-        adresse
-        codePost
-        city
-        phoneNumber
-        stage
-        role
-        avatar {
-          id
-          fileName
-          url
-        }
-        role
+        fileName
+        url
       }
+      role
     }
-  `,
+  }
+`;
 
-  getOnePersonByEmail: gql`
-    query getOnePerson($email: String!) {
-      person(where: { email: $email }) {
+/**
+ * request recupere person via l'email
+ */
+export const ReqGetOnePersonByEmail = gql`
+  query getOnePerson($where: String!) {
+    person(where: { email: $where }) {
+      id
+      firstName
+      lastName
+      userName
+      pseudo
+      email
+      password
+      adresse
+      codePost
+      city
+      phoneNumber
+      stage
+      role
+      avatar {
         id
-        firstName
-        lastName
-        userName
-        pseudo
-        email
-        password
-        adresse
-        codePost
-        city
-        phoneNumber
-        stage
-        role
-        avatar {
-          id
-          fileName
-          url
-        }
+        fileName
+        url
       }
     }
-  `,
-};
+  }
+`;
