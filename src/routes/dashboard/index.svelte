@@ -33,7 +33,7 @@
     image = e.target.files[0];
     console.log('image =>', image);
 
-    // createFileAction(image);
+    createFileAction(image);
   };
 </script>
 
