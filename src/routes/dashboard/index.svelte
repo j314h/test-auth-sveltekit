@@ -22,6 +22,16 @@
     valueEmailCreate = '';
     valuePasswordCreate = '';
   };
+
+  // mise en forme de l'image
+  const changeInputFile = (e) => {
+    console.log('imageTarget =>', e.target);
+
+    image = e.target.files[0];
+    console.log('image =>', image);
+
+    createFile(Image);
+  };
 </script>
 
 <Logout />
@@ -68,6 +78,9 @@
     {/each}
   </select>
   <button>Envoyer</button>
+</form>
+<form>
+  <input type="file" name="file" on:change={changeInputFile} />
 </form>
 
 <style>
