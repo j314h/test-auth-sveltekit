@@ -14,3 +14,12 @@
 ## voir le projet
 
 - l'application est visible sur le `localhost:3000`
+
+## implementation du composant erreur
+
+- fonction login() dans le fichier `person.action`  
+  voir TODO dans les commentaires
+
+## la connexion person
+
+## la creation person

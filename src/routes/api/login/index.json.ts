@@ -35,6 +35,7 @@ export const post = async ({
     if (!person) {
       throw new Error("L'utilisateur est inconnu !");
     }
+    // comparaison mot de passe
     const res = compareHash(data.password, person.password);
     // si mot de passe pas ok
     if (!res) {
@@ -43,7 +44,6 @@ export const post = async ({
 
     // on supprime password du person
     delete person.password;
-
     // creation headers
     const headers = createCookieHeadersApiVite(person);
 

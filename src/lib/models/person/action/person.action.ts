@@ -49,7 +49,7 @@ export const login = async (e): Promise<any> => {
 
   // si person exist sinon error
   if (response?.person) {
-    return await response.person;
+    return response.person;
   } else {
     console.log(response.error);
     return false;
