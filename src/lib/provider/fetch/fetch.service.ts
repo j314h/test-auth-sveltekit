@@ -23,7 +23,7 @@ export const configRequest = function (
 ): RequestInit {
   const configNotBody = {
     method: method,
-    //credentials: 'include' as RequestCredentials,
+    credentials: 'include' as RequestCredentials,
     withCredentials: true,
     headers: header,
     mode: 'cors' as RequestMode,
@@ -31,7 +31,7 @@ export const configRequest = function (
 
   const configBody = {
     method: method,
-    //credentials: 'include' as RequestCredentials,
+    credentials: 'include' as RequestCredentials,
     withCredentials: true,
     headers: header,
     mode: 'cors' as RequestMode,

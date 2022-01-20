@@ -18,7 +18,7 @@ export const createCookieHeadersApiVite = (person: IPerson): any => {
       }),
       {
         httpOnly: true,
-        maxAge: 60 * 60, // temps de validité du cookie (1j)
+        maxAge: 60 * 60, // temps de validité du cookie (1h)
         sameSite: 'strict',
         path: '/',
       }

@@ -1,3 +1,4 @@
+import type { IError } from './error.type';
 import type { IImage } from './image.type';
 
 /**
@@ -22,20 +23,20 @@ export interface IPerson {
 /**
  * interface person
  */
-export interface IPersonReceved {
+export interface IPersonReceved extends IError {
   person?: IPerson;
 }
 
 /**
  * interface person reçus apres creation
  */
-export interface IPersonCreateReceved {
+export interface IPersonCreateReceved extends IError {
   createPerson?: IPerson;
 }
 
 /**
  * interface person reçus apres publication
  */
-export interface IPersonPublishReceved {
+export interface IPersonPublishReceved extends IError {
   publishPerson?: IPerson;
 }

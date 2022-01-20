@@ -1,4 +1,5 @@
 import { goto } from '$app/navigation';
+import { session } from '$app/stores';
 import { callApi } from '$lib/provider/fetch/fetch.service';
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
 import { EMethodeFetch } from '$lib/types/fetch.type';
@@ -33,21 +34,24 @@ export const createPerson = async (e): Promise<void> => {
 
 /**
  * connexion person
+ * @todo: implementer composant erreur à la place du console log
  */
-export const login = async (e): Promise<void> => {
+export const login = async (e): Promise<any> => {
   // creation formData
   const formData = createObjectAsFormData(e.target);
 
-  // create
-  const person = await callApi<IPersonReceved>(
+  // connexion person
+  const response = await callApi<IPersonReceved>(
     'api/login.json',
     EMethodeFetch.POST,
     formData
   );
 
-  // si ok on va sur dashbord
-  if (person) {
-    console.log('RESPONSE : ', person);
-    goto('/dashboard');
+  // si person exist sinon error
+  if (response?.person) {
+    return await response.person;
+  } else {
+    console.log(response.error);
+    return false;
   }
 };

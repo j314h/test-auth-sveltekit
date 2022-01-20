@@ -15,7 +15,7 @@ import { getOne } from '../_api.service';
  * => enleve le password de l'objet person recuperer
  * => creation du header avec le cookie
  * @param {body} => les données venant du form
- * @returns
+ * @returns => envoie de la person ou alors de l'error
  */
 export const post = async ({
   body,
@@ -51,14 +51,14 @@ export const post = async ({
       status: 200,
       headers,
       body: {
-        ...person,
+        person,
       },
     };
   } catch (error) {
     return {
-      status: 500,
+      status: 403,
       body: {
-        error: error.error,
+        error: error.message,
       },
     };
   }

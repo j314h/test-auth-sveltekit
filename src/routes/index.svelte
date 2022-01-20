@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { session } from '$app/stores';
   import { login } from '$lib/models/person/action/person.action';
 
   // connexion input value
@@ -9,8 +10,12 @@
 
   // envoie fomulaire connexion
   const connexionForm = async (e) => {
-    //connexion user
-    await login(e);
+    // connexion user
+    const person = await login(e);
+    // si person ok, creation session
+    if (person) {
+      $session.person = person;
+    }
     // reset input connexion
     valueEmail = '';
     valuePassword = '';
