@@ -1,4 +1,4 @@
-import type { IPerson } from '$lib/types/person.type';
+import type { IPerson } from '$lib/modules/person/person.type';
 import { createJwt } from '../jwt/jwt.service';
 import cookie from 'cookie';
 

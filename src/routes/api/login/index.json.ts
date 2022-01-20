@@ -1,7 +1,7 @@
 import { createCookieHeadersApiVite } from '$lib/provider/cookie/cookie.service';
 import { compareHash } from '$lib/provider/crypto/crypto.service';
-import { ReqGetOnePersonByEmail } from '$lib/query/person.query';
-import type { IPerson, IPersonReceved } from '$lib/types/person.type';
+import { ReqGetOnePersonByEmail } from '$lib/modules/person/person.query';
+import type { IPerson, IPersonReceved } from '$lib/modules/person/person.type';
 import type { IResponseVite } from 'src/global';
 import { getOne } from '../_api.service';
 

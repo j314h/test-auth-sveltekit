@@ -1,12 +1,10 @@
-import { goto } from '$app/navigation';
-import { session } from '$app/stores';
 import { callApi } from '$lib/provider/fetch/fetch.service';
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
-import { EMethodeFetch } from '$lib/types/fetch.type';
+import { EMethodeFetch } from '$lib/provider/fetch/fetch.type';
 import type {
   IPersonPublishReceved,
   IPersonReceved,
-} from '$lib/types/person.type';
+} from '$lib/modules/person/person.type';
 
 /**
  * create person

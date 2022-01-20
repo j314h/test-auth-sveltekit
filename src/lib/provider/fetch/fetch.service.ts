@@ -1,4 +1,4 @@
-import type { EMethodeFetch } from '$lib/types/fetch.type';
+import type { EMethodeFetch } from '$lib/provider/fetch/fetch.type';
 /**
  * fonction qui creer et retourne un headers simple
  * @returns => retourne un header simple

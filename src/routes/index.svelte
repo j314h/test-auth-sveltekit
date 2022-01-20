@@ -1,6 +1,6 @@
 <script lang="ts">
   import { session } from '$app/stores';
-  import { login } from '$lib/models/person/action/person.action';
+  import { login } from '$lib/modules/person/person.action';
 
   // connexion input value
   let valueEmail = '';

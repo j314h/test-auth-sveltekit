@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { createPerson } from '$lib/models/person/action/person.action';
-  import { ERole } from '$lib/types/role.type';
+  import { createPerson } from '$lib/modules/person/person.action';
+  import { ERole } from '$lib/modules/role/role.type';
 
   // les roles pour creation user
   let roles: ERole[] = [ERole.ROOT, ERole.DEV, ERole.CLIENT];

@@ -1,5 +1,5 @@
-import type { IError } from './error.type';
-import type { IImage } from './image.type';
+import type { IError } from '../error/error.type';
+import type { IImage } from '../image/image.type';
 
 /**
  * interface person

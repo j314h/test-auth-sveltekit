@@ -1,4 +1,4 @@
-import type { IPerson } from '$lib/types/person.type';
+import type { IPerson } from '$lib/modules/person/person.type';
 import type { IResponseVite } from 'src/global';
 import { encrypt } from '$lib/provider/crypto/crypto.service';
 import {

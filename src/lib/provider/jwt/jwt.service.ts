@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import type { IPayloadJwt } from '$lib/types/jwt.type';
+import type { IPayloadJwt } from '$lib/provider/jwt/jwt.type';
 
 /**
  * creation d'un token signé
@@ -30,9 +30,4 @@ export const verifJwt = (token: string): IPayloadJwt => {
       return value;
     }
   );
-};
-
-export const verifPayload = (payload: IPayloadJwt): boolean => {
-  const test = true;
-  return test ? true : false;
 };

@@ -1,9 +1,12 @@
-import { ReqCreatePerson, ReqPublishedPerson } from '$lib/query/person.query';
+import {
+  ReqCreatePerson,
+  ReqPublishedPerson,
+} from '$lib/modules/person/person.query';
 import type {
   IPerson,
   IPersonCreateReceved,
   IPersonPublishReceved,
-} from '$lib/types/person.type';
+} from '$lib/modules/person/person.type';
 import { create, publish } from '../_api.service';
 
 /**
