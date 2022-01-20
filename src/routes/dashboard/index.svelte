@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Logout from '$lib/modules/logout/logout.composant.svelte';
   import { createPerson } from '$lib/modules/person/person.action';
   import { ERole } from '$lib/modules/role/role.type';
 
@@ -22,6 +23,8 @@
     valuePasswordCreate = '';
   };
 </script>
+
+<Logout />
 
 <p>Mon compte</p>
 

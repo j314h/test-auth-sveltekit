@@ -25,3 +25,16 @@ export const createCookieHeadersApiVite = (person: IPerson): any => {
     ),
   };
 };
+
+/**
+ * fonction qui supprime le cookie jwt4368
+ * @returns header set-cookie
+ */
+export const deleteCookie = (): any => {
+  return {
+    'Set-Cookie': cookie.serialize('jwt4368', '', {
+      expire: new Date(0),
+      path: '/',
+    }),
+  };
+};
