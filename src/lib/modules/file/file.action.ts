@@ -8,7 +8,7 @@ import { ReqCreateFile } from './file.query';
 /**
  * create image
  */
-export const createFile = async (e): Promise<void> => {
+export const createFileAction = async (e): Promise<void> => {
   // creation du formData
   const formData = createObjectAsFormData(e.target);
 
