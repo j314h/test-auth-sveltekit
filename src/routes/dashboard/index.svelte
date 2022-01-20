@@ -44,11 +44,36 @@
 <!-- création user -->
 <h1>Creation Users</h1>
 <form on:submit|preventDefault={handlerCreateForm}>
-  <input type="text" name="firstName" placeholder="firstName" bind:value={valueFirstName} />
-  <input type="text" name="lastName" placeholder="lastName" bind:value={valueLastName} />
-  <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
-  <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
-  <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
+  <input
+    type="text"
+    name="firstName"
+    placeholder="firstName"
+    bind:value={valueFirstName}
+  />
+  <input
+    type="text"
+    name="lastName"
+    placeholder="lastName"
+    bind:value={valueLastName}
+  />
+  <input
+    type="text"
+    name="pseudo"
+    placeholder="pseudo"
+    bind:value={valuePseudo}
+  />
+  <input
+    type="text"
+    name="email"
+    placeholder="email"
+    bind:value={valueEmailCreate}
+  />
+  <input
+    type="text"
+    name="password"
+    placeholder="password"
+    bind:value={valuePasswordCreate}
+  />
   <select name="role" id="role-select">
     <option value="">-- choisissez un role --</option>
     {#each roles as role}
