@@ -1,3 +1,4 @@
+import { graphqlServiceFile } from './../../lib/provider/graphql/graphql.service';
 import { graphqlService } from '$lib/provider/graphql/graphql.service';
 
 /**
@@ -69,4 +70,50 @@ export const deleteOne = async <T>(
  */
 export const getAll = async <T>(query: string): Promise<T[]> => {
   return await graphqlService.request<T[]>(query);
+};
+
+/************************** CRUD pour le file **********************/
+
+/**
+ * creation d'un model
+ * @param data les données pour la creation du file
+ * @param query requete du model
+ * @returns le model creer
+ */
+ export const createFile = async <T, I>(data: I, query: string): Promise<T> => {
+  return await graphqlServiceFile.request<T>(query, {
+    new: data,
+  });
+};
+
+/**
+ * fonction qui recupere un model
+ * @param where => propriete de donnée cible
+ * @param query => la request
+ * @returns => retourne le model ciblé
+ */
+ export const getOneFile = async <T>(where: string, query: string): Promise<T> => {
+  return await graphqlServiceFile.request<T>(query, { where });
+};
+
+/**
+ * fonction qui supprime un model
+ * @param where => propriete de donnée cible
+ * @param query => la request
+ * @returns => retourne le model supprimé
+ */
+ export const deleteOneFile = async <T>(
+  where: string,
+  query: string
+): Promise<T> => {
+  return await graphqlServiceFile.request<T>(query, { where });
+};
+
+/**
+ * fonction qui recupere plusieurs model
+ * @param query => la request
+ * @returns retourne un tableau du model
+ */
+ export const getAllFile = async <T>(query: string): Promise<T[]> => {
+  return await graphqlServiceFile.request<T[]>(query);
 };
