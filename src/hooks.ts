@@ -11,7 +11,7 @@ export const handle = async ({ request, resolve }) => {
   console.log('debut du handle');
 
   // recuperer les cookie sous forme d'objet
-  const cookieApi = cookie.parse(request.headers.cookie);
+  const cookieApi = cookie.parse(request.headers.cookie ?? '');
 
   // test le cookie si il exist
   if (cookieApi.jwt4368) {

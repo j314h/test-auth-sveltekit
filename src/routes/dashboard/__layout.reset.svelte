@@ -7,7 +7,9 @@
         redirect: '/',
       };
     }
-    return {};
+    return {
+      props: {},
+    };
   };
 </script>
 
