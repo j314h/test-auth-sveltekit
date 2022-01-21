@@ -1,3 +1,8 @@
+import {
+  graphqlService,
+  graphqlServiceFile,
+} from '$lib/provider/graphql/graphql.service';
+
 /**
  * regroupe les fonctions CRUD simple
  * ATTENTION :
@@ -12,8 +17,6 @@
  * pour une meilleur accèssibilité
  * Merci ;-)
  */
-
-import { graphqlService, graphqlServiceFile } from './_graphql.service';
 
 /**
  * passe l'etat draft à l'état publier

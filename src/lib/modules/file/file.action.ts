@@ -1,5 +1,5 @@
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
-import { graphqlServiceFile } from 'src/routes/api/_graphql.service';
+import { graphqlServiceFile } from '$lib/provider/graphql/graphql.service';
 import { ReqCreateFile } from './file.query';
 import type { IFileCreateReceved } from './file.type';
 
