@@ -42,14 +42,14 @@ export const post = async ({
     return {
       status: 200,
       body: {
-        ...person,
+        person,
       },
     };
   } catch (error) {
     return {
       status: 500,
       body: {
-        error: error.error,
+        error: error.message,
       },
     };
   }

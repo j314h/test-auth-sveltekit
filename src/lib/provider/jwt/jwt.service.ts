@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import config from 'config';
 import type { IPayloadJwt } from '$lib/provider/jwt/jwt.type';
 
 /**
@@ -8,7 +7,7 @@ import type { IPayloadJwt } from '$lib/provider/jwt/jwt.type';
  * @returns return token
  */
 export const createJwt = (payload: IPayloadJwt): string => {
-  const token = jwt.sign({ ...payload }, config.get('jwt.secret'), {
+  const token = jwt.sign({ ...payload }, import.meta.env.VITE_JWT_SECRET, {
     expiresIn: 60 * 60,
   }) as string;
   return token;
@@ -22,7 +21,7 @@ export const createJwt = (payload: IPayloadJwt): string => {
 export const verifJwt = (token: string): IPayloadJwt => {
   return jwt.verify(
     token,
-    config.get('jwt.secret'),
+    import.meta.env.VITE_JWT_SECRET,
     (err, value: IPayloadJwt) => {
       if (err) {
         return err;

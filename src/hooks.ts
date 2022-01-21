@@ -3,7 +3,6 @@ import { verifJwt } from '$lib/provider/jwt/jwt.service';
 import { ReqGetOnePersonById } from '$lib/modules/person/person.query';
 import type { IPerson, IPersonReceved } from '$lib/modules/person/person.type';
 import { ERole } from '$lib/modules/role/role.type';
-import config from 'config';
 import cookie from 'cookie';
 import { getOne } from './routes/api/_api.service';
 import type { IPayloadJwt } from '$lib/provider/jwt/jwt.type';
@@ -39,7 +38,7 @@ const setAuthorisationGraphcms = (person: IPerson): void => {
   switch (person.role) {
     case ERole.ROOT:
       graphqlService.setHeaders({
-        Authorization: `Bearer ${config.get('graphcms.tokenRoot')}`,
+        Authorization: `Bearer ${import.meta.env.VITE_TOKEN_ROOT}`,
       });
       break;
     default:
