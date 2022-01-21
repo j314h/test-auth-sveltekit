@@ -2,7 +2,7 @@
   "name": "test-auth",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "env-cmd svelte-kit dev",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/kit": "v1.0.0-next.230",
     "@types/config": "^0.0.41",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
@@ -31,6 +31,7 @@
     "config": "^3.3.7",
     "cookie": "^0.4.1",
     "crypto-js": "^4.1.1",
+    "env-cmd": "^10.1.0",
     "jsonwebtoken": "^8.5.1"
   }
 }
