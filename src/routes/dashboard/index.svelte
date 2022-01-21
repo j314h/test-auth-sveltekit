@@ -1,6 +1,6 @@
-<script lang="ts">
+<script lang="ts" context="module">
   import { createFileAction } from '$lib/modules/file/file.action';
-
+  import { test } from '$lib/modules/test/test.action';
   import Logout from '$lib/modules/logout/logout.composant.svelte';
   import { createPerson } from '$lib/modules/person/person.action';
   import { ERole } from '$lib/modules/role/role.type';
@@ -27,13 +27,13 @@
   };
 
   // mise en forme de l'image
-  const changeInputFile = (e) => {
+  const changeInputFile = async (e) => {
     console.log('imageTarget =>', e.target);
 
     image = e.target.files[0];
     console.log('image =>', image);
 
-    createFileAction(image);
+    await createFileAction(image);
   };
 </script>
 
@@ -44,36 +44,11 @@
 <!-- création user -->
 <h1>Creation Users</h1>
 <form on:submit|preventDefault={handlerCreateForm}>
-  <input
-    type="text"
-    name="firstName"
-    placeholder="firstName"
-    bind:value={valueFirstName}
-  />
-  <input
-    type="text"
-    name="lastName"
-    placeholder="lastName"
-    bind:value={valueLastName}
-  />
-  <input
-    type="text"
-    name="pseudo"
-    placeholder="pseudo"
-    bind:value={valuePseudo}
-  />
-  <input
-    type="text"
-    name="email"
-    placeholder="email"
-    bind:value={valueEmailCreate}
-  />
-  <input
-    type="text"
-    name="password"
-    placeholder="password"
-    bind:value={valuePasswordCreate}
-  />
+  <input type="text" name="firstName" placeholder="firstName" bind:value={valueFirstName} />
+  <input type="text" name="lastName" placeholder="lastName" bind:value={valueLastName} />
+  <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
+  <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
+  <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
   <select name="role" id="role-select">
     <option value="">-- choisissez un role --</option>
     {#each roles as role}
