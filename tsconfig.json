@@ -24,7 +24,8 @@
     "checkJs": true,
     "paths": {
       "$lib": ["src/lib"],
-      "$lib/*": ["src/lib/*"]
+      "$lib/*": ["src/lib/*"],
+      "$routes": ["src/routes"]
     }
   },
   "include": [

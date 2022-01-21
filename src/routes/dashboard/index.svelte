@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
   import { createFileAction } from '$lib/modules/file/file.action';
-  import { test } from '$lib/modules/test/test.action';
   import Logout from '$lib/modules/logout/logout.composant.svelte';
   import { createPerson } from '$lib/modules/person/person.action';
   import { ERole } from '$lib/modules/role/role.type';
