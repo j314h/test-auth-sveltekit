@@ -1,4 +1,7 @@
-import { graphqlService } from '$lib/provider/graphql/graphql.service';
+import {
+  graphqlCms,
+  graphqlService,
+} from '$lib/provider/graphql/graphql.service';
 import { verifJwt } from '$lib/provider/jwt/jwt.service';
 import { ReqGetOnePersonById } from '$lib/modules/person/person.query';
 import type { IPerson, IPersonReceved } from '$lib/modules/person/person.type';
@@ -40,6 +43,7 @@ const setAuthorisationGraphcms = (person: IPerson): void => {
       graphqlService.setHeaders({
         Authorization: `Bearer ${import.meta.env.VITE_TOKEN_ROOT}`,
       });
+      graphqlCms.setheader(import.meta.env.VITE_TOKEN_ROOT);
       break;
     default:
       graphqlService.setHeaders({
