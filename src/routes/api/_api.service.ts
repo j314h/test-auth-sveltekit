@@ -1,5 +1,7 @@
-import { graphqlServiceFile } from './../../lib/provider/graphql/graphql.service';
-import { graphqlService } from '$lib/provider/graphql/graphql.service';
+import {
+  graphqlService,
+  graphqlServiceFile,
+} from '$lib/provider/graphql/graphql.service';
 
 /**
  * regroupe les fonctions CRUD simple
@@ -80,7 +82,7 @@ export const getAll = async <T>(query: string): Promise<T[]> => {
  * @param query requete du model
  * @returns le model creer
  */
- export const createFile = async <T, I>(data: I, query: string): Promise<T> => {
+export const createFile = async <T, I>(data: I, query: string): Promise<T> => {
   return await graphqlServiceFile.request<T>(query, {
     new: data,
   });
@@ -92,7 +94,10 @@ export const getAll = async <T>(query: string): Promise<T[]> => {
  * @param query => la request
  * @returns => retourne le model ciblé
  */
- export const getOneFile = async <T>(where: string, query: string): Promise<T> => {
+export const getOneFile = async <T>(
+  where: string,
+  query: string
+): Promise<T> => {
   return await graphqlServiceFile.request<T>(query, { where });
 };
 
@@ -102,7 +107,7 @@ export const getAll = async <T>(query: string): Promise<T[]> => {
  * @param query => la request
  * @returns => retourne le model supprimé
  */
- export const deleteOneFile = async <T>(
+export const deleteOneFile = async <T>(
   where: string,
   query: string
 ): Promise<T> => {
@@ -114,6 +119,6 @@ export const getAll = async <T>(query: string): Promise<T[]> => {
  * @param query => la request
  * @returns retourne un tableau du model
  */
- export const getAllFile = async <T>(query: string): Promise<T[]> => {
+export const getAllFile = async <T>(query: string): Promise<T[]> => {
   return await graphqlServiceFile.request<T[]>(query);
 };

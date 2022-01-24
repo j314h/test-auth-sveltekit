@@ -1,11 +1,11 @@
 import { createObjectAsFormData } from '$lib/provider/form/form.service';
-import { graphqlService } from '$lib/provider/graphql/graphql.service';
+import { graphqlServiceFile } from '$lib/provider/graphql/graphql.service';
 import { ReqCreateFile } from './file.query';
 import type { IFileCreateReceved } from './file.type';
 
 /**
  * create image
-
+ */
 export const createFileAction = async (e): Promise<void> => {
   // creation du formData
   const formData = createObjectAsFormData(e.target);
@@ -18,6 +18,3 @@ export const createFileAction = async (e): Promise<void> => {
 
   console.log(file);
 };
- */
-
-export const createFileAction = () => {};

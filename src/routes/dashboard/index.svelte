@@ -1,6 +1,5 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { createFileAction } from '$lib/modules/file/file.action';
-  import { test } from '$lib/modules/test/test.action';
   import Logout from '$lib/modules/logout/logout.composant.svelte';
   import { createPerson } from '$lib/modules/person/person.action';
   import { ERole } from '$lib/modules/role/role.type';
@@ -14,16 +13,24 @@
   let valuePseudo = '';
   let valueEmailCreate = '';
   let valuePasswordCreate = '';
+
   let image = null;
 
-  //envoie formulaire create
-  const handlerCreateForm = async (e) => {
-    await createPerson(e);
+  // reset input form create person
+  const resetInputFormCreatePerson = () => {
     valueFirstName = '';
     valueLastName = '';
     valuePseudo = '';
     valueEmailCreate = '';
     valuePasswordCreate = '';
+  };
+
+  //envoie formulaire create person
+  const handlerCreateForm = async (e) => {
+    // creation person
+    await createPerson(e);
+    // reset les input
+    resetInputFormCreatePerson();
   };
 
   // mise en forme de l'image
@@ -41,22 +48,32 @@
 
 <p>Mon compte</p>
 
-<!-- création user -->
 <h1>Creation Users</h1>
+
+<!-- create person -->
 <form on:submit|preventDefault={handlerCreateForm}>
+  <!-- input -->
   <input type="text" name="firstName" placeholder="firstName" bind:value={valueFirstName} />
   <input type="text" name="lastName" placeholder="lastName" bind:value={valueLastName} />
   <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
   <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
   <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
+
+  <!-- select role -->
   <select name="role" id="role-select">
     <option value="">-- choisissez un role --</option>
     {#each roles as role}
       <option value={role}>{role}</option>
     {/each}
   </select>
-  <button>Envoyer</button>
+
+  <!-- btn submit -->
+  <button type="submit">Envoyer</button>
 </form>
+
+<!-- upload file -->
+<h1>telecharger un fichier</h1>
+<!-- upload -->
 <form>
   <input type="file" name="file" on:change={changeInputFile} />
 </form>
@@ -64,5 +81,9 @@
 <style>
   input {
     display: block;
+  }
+
+  form {
+    margin-bottom: 40px;
   }
 </style>

@@ -7,6 +7,7 @@ import type {
   IPersonCreateReceved,
   IPersonPublishReceved,
 } from '$lib/modules/person/person.type';
+import { graphqlCms } from '$lib/provider/graphql/graphql.service';
 import { create, publish } from '../_api.service';
 
 /**
@@ -21,11 +22,10 @@ import { create, publish } from '../_api.service';
 export const createAndPublishPerson = async (
   data: IPerson
 ): Promise<IPerson> => {
-  // creation
-  const { createPerson } = await create<IPersonCreateReceved, IPerson>(
-    data,
-    ReqCreatePerson
-  );
+  const { createPerson } = await graphqlCms.create<
+    IPersonCreateReceved,
+    IPerson
+  >(data, ReqCreatePerson);
 
   // publication
   const { publishPerson } = await publish<IPersonPublishReceved>(

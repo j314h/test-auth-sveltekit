@@ -28,10 +28,10 @@
   },
   "type": "module",
   "dependencies": {
-    "config": "^3.3.7",
     "cookie": "^0.4.1",
     "crypto-js": "^4.1.1",
     "env-cmd": "^10.1.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "woopear-crud-sveltekit": "^1.0.3"
   }
 }

@@ -1,4 +1,3 @@
-import config from 'config';
 import CryptoJS from 'crypto-js';
 /**
  * fonction qui hash la string passé en argument
@@ -6,7 +5,10 @@ import CryptoJS from 'crypto-js';
  * @returns retourne un hash
  */
 export const encrypt = (str: string): string => {
-  return CryptoJS.AES.encrypt(str, config.get('crypto.secret')).toString();
+  return CryptoJS.AES.encrypt(
+    str,
+    import.meta.env.VITE_CRYPTO_SECRET
+  ).toString();
 };
 
 /**
@@ -15,9 +17,10 @@ export const encrypt = (str: string): string => {
  * @returns retourne le hash en string normal
  */
 export const decrypt = (hash: string): string => {
-  return CryptoJS.AES.decrypt(hash, config.get('crypto.secret')).toString(
-    CryptoJS.enc.Utf8
-  );
+  return CryptoJS.AES.decrypt(
+    hash,
+    import.meta.env.VITE_CRYPTO_SECRET
+  ).toString(CryptoJS.enc.Utf8);
 };
 
 /**

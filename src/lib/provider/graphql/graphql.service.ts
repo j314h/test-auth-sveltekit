@@ -1,14 +1,14 @@
 import { GraphQLClient } from 'graphql-request';
-//import config from 'config';
+import { GraphqlWooCrud } from 'woopear-crud-sveltekit';
 
-// url api graphql dans graphcms
-//const graphqlContentUrl = config.get('graphcms.contentUrl') as string;
-//const graphqlUplaodUrl = config.get('graphcms.assetUrl') as string;
-const graphqlUplaodUrl = import.meta.env.VITE_GRAPHQL;
+const graphqlContentUrl = import.meta.env.VITE_GRAPHCMS;
+const graphqlUploaddUrl = import.meta.env.VITE_GRAPHCMS_UPLOAD;
 
 // client content
-//export const graphqlService = new GraphQLClient(graphqlContentUrl);
-export const graphqlService = new GraphQLClient(graphqlUplaodUrl);
+export const graphqlService = new GraphQLClient(graphqlContentUrl);
 
 // client file
-//export const graphqlServiceFile = new GraphQLClient(graphqlUplaodUrl);
+export const graphqlServiceFile = new GraphQLClient(graphqlUploaddUrl);
+
+// test package woopear-crud-sveltekit
+export const graphqlCms = new GraphqlWooCrud(graphqlContentUrl);
