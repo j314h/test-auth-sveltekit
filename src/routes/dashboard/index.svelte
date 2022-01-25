@@ -1,8 +1,10 @@
 <script lang="ts">
   import { createFileAction } from '$lib/modules/file/file.action';
+  import type { IFile } from '$lib/modules/file/file.type';
   import Logout from '$lib/modules/logout/logout.composant.svelte';
   import { createPerson } from '$lib/modules/person/person.action';
   import { ERole } from '$lib/modules/role/role.type';
+  import { createObjectAsFormData } from '$lib/provider/form/form.service';
 
   // les roles pour creation user
   let roles: ERole[] = [ERole.ROOT, ERole.DEV, ERole.CLIENT];
@@ -14,8 +16,8 @@
   let valueEmailCreate = '';
   let valuePasswordCreate = '';
 
-  let image = null;
-
+  let image;
+  let fs;
   // reset input form create person
   const resetInputFormCreatePerson = () => {
     valueFirstName = '';
@@ -35,12 +37,21 @@
 
   // mise en forme de l'image
   const changeInputFile = async (e) => {
-    console.log('imageTarget =>', e.target);
+    const form = new FormData();
 
-    image = e.target.files[0];
-    console.log('image =>', image);
+    form.append('fileUpload', e.name);
+    /* image = e.target.files[0];
+    console.log('image =>', image); */
 
-    await createFileAction(image);
+    fetch(`${import.meta.env.VITE_GRAPHCMS_UPLOAD}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TOKEN_ROOT}`,
+      },
+      body: form,
+    });
+
+    // await createFileAction(image);
   };
 </script>
 

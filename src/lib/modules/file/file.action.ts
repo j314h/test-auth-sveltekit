@@ -8,8 +8,10 @@ import type { IFileCreateReceved } from './file.type';
  */
 export const createFileAction = async (e): Promise<void> => {
   // creation du formData
-  const formData = createObjectAsFormData(e.target);
+   const formData = createObjectAsFormData(e.target);
 
+  console.log('formaDataAction =>',e);
+  
   //create
   const file = await graphqlServiceFile.request<IFileCreateReceved>(
     ReqCreateFile,

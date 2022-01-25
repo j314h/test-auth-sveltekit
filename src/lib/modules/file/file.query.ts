@@ -4,8 +4,8 @@ import { gql } from 'graphql-request';
  * request creation du file
  */
 export const ReqCreateFile = gql`
-  mutation createFile($new: AssetCreateInput!) {
-    createFile(data: $new) {
+  mutation createAsset($new: AssetCreateInput!) {
+    createAsset(where: {data: $new}) {
       id
     }
   }
