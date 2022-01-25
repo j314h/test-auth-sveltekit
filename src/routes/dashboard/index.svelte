@@ -39,7 +39,7 @@
   const changeInputFile = async (e) => {
     const form = new FormData();
 
-    form.append('fileUpload', e.name);
+    form.append('fileUpload', e.target.files[0]);
     /* image = e.target.files[0];
     console.log('image =>', image); */
 
@@ -64,11 +64,36 @@
 <!-- create person -->
 <form on:submit|preventDefault={handlerCreateForm}>
   <!-- input -->
-  <input type="text" name="firstName" placeholder="firstName" bind:value={valueFirstName} />
-  <input type="text" name="lastName" placeholder="lastName" bind:value={valueLastName} />
-  <input type="text" name="pseudo" placeholder="pseudo" bind:value={valuePseudo} />
-  <input type="text" name="email" placeholder="email" bind:value={valueEmailCreate} />
-  <input type="text" name="password" placeholder="password" bind:value={valuePasswordCreate} />
+  <input
+    type="text"
+    name="firstName"
+    placeholder="firstName"
+    bind:value={valueFirstName}
+  />
+  <input
+    type="text"
+    name="lastName"
+    placeholder="lastName"
+    bind:value={valueLastName}
+  />
+  <input
+    type="text"
+    name="pseudo"
+    placeholder="pseudo"
+    bind:value={valuePseudo}
+  />
+  <input
+    type="text"
+    name="email"
+    placeholder="email"
+    bind:value={valueEmailCreate}
+  />
+  <input
+    type="text"
+    name="password"
+    placeholder="password"
+    bind:value={valuePasswordCreate}
+  />
 
   <!-- select role -->
   <select name="role" id="role-select">
